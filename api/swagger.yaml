@@ -1,0 +1,91 @@
+---
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: "Swagger API"
+host: "localhost"
+basePath: "/"
+schemes:
+- "http"
+- "https"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /health:
+    get:
+      description: "Returns health check status to the caller"
+      operationId: "health"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/HealthResponse"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Default"
+  /hello:
+    get:
+      description: "Returns greetings to the caller"
+      operationId: "hello"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/HelloWorldResponse"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Default"
+  /good_bye:
+    get:
+      description: "Returns a good-bye"
+      operationId: "bye"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GoodbyeResponse"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Default"
+definitions:
+  HealthResponse:
+    required:
+    - "statusString"
+    properties:
+      statusString:
+        type: "string"
+      age:
+        type: "number"
+  HelloWorldResponse:
+    required:
+    - "message"
+    properties:
+      message:
+        type: "string"
+      age:
+        type: "number"
+  GoodbyeResponse:
+    required:
+    - "message"
+    properties:
+      message:
+        type: "string"
+      date:
+        type: "string"
+  ErrorResponse:
+    required:
+    - "message"
+    properties:
+      message:
+        type: "string"

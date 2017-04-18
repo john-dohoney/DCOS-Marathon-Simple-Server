@@ -1,0 +1,31 @@
+{
+  "id": "/node-api",
+  "instances": 1,
+  "cpus": 1,
+  "mem": 2048,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "johndohoney/simplenode",
+      "network": "BRIDGE",
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 0,
+          "servicePort": 0,
+          "protocol": "tcp",
+          "name": "default"
+        }
+      ],
+      "privileged": false,
+      "forcePullImage": false
+    }
+  },
+  "requirePorts": true,
+  "labels": {
+    "HAPROXY_GROUP": "external",
+    "HAPROXY_0_VHOST": "54.202.63.130",
+    "HAPROXY_0_PATH": "/api",
+    "HAPROXY_0_HTTP_BACKEND_PROXYPASS_PATH": "/api"
+  }
+}
