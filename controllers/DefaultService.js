@@ -63,16 +63,26 @@ exports.health = function(args, res, next) {
    *
    * returns HealthResponse
    **/
-  var health = {};
-  health['application/json'] = {
-  "statusString" : "Ok"
-};
-  if (Object.keys(health).length > 0) {
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(health[Object.keys(health)[0]] || {}, null, 2));
-  } else {
-    res.end();
-  }
+   try {
+     var health = {};
+     //
+     // It is better to call out to dependicies to determine the healh of your microservice
+     // There is no hard and fast rule on the execution time, but aim to be no more than 50ms
+     //
+     health['application/json'] = { "statusString" : "Ok" };
+     if (Object.keys(health).length > 0) {
+       res.setHeader('Content-Type', 'application/json');
+       res.end(JSON.stringify(health[Object.keys(health)[0]] || {}, null, 2));
+      } else {
+       res.end();
+      }
+     } catch (err) {
+       health['application/json'] = { "statusString" : "Error" };
+       res.setHeader('Content-Type', 'application/json');
+       res.end(JSON.stringify(health[Object.keys(health)[0]] || {}, null, 2));
+       // handle the error safely
+       console.log(err)
+    }
 }
 
 

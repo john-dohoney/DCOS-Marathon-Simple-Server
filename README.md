@@ -39,12 +39,12 @@ To restore the image to your environment:
  zcat simplenodeapi.tar.gz  | docker load
 ```
 
-To see the loaded image, re-execute the docker images.  To load to your private docker repo, re-tag and push to make it available for loading by DCOS.  You will have to change the name in my example Marathon configuration to your 'docker -t' iamge name.
+To see the loaded image, re-execute the docker images.  To load to your private docker repo, re-tag and push to make it available for loading by DCOS.  You will have to change the name in my example Marathon configuration to your 'docker -t' image name.
 
 ### Marathon Usage
 Change to the marathon sub-directory, open the DCOS version 1.9 sample (the one with the 'lb" appended is for use with Marathon-LB)  Copy into your computer clip board the contents of  simple-api-1.9.json.  Click on Services in the Left Command Tab, then "Run a Service", click "Single COntainer", toggle the JSON Editor so it is visible and paste the contents of your clipboard and watch the example microservice load.  Once the health checks are functional, the service bar will show green.
 
-To experiment, remove the health check, what heppens? (Yeah, no bar -- no health feed back)
+To experiment, remove the health check, what heppens? (Yeah, no bar -- no health feed back)  What is nice about a health check under Marathon is, if it fails, Marathon will re-start your app for you.  No health check, Marathon has no no way of knowing that status of you app.  This is why health checks are so important for operations in a modern cluster.
 
 
 ### Marathon-LB Usage
@@ -58,6 +58,6 @@ Why this is so nice is now, you do not have to figure out the port it is running
 
 ```
  curl http://<public agent ipv4>/api/hello
-``` 
+```
 Scale the api to 3 - 4 instances.  THen invoke the API again.  Scroll down to see the port changes.  Marathon-LB handles the service discovery details as well as dispatching the HTTP call to a health dcoker container.
 
