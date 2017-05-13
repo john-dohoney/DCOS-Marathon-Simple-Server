@@ -59,5 +59,7 @@ Why this is so nice is now, you do not have to figure out the port it is running
 ```
  curl http://<public agent ipv4>/api/hello
 ```
-Scale the api to 3 - 4 instances.  THen invoke the API again.  Scroll down to see the port changes.  Marathon-LB handles the service discovery details as well as dispatching the HTTP call to a health dcoker container.
+Scale the api to 3 - 4 instances.  THen invoke the API again.  Scroll down to see the port changes.  Marathon-LB handles the service discovery details as well as dispatching the HTTP call to a health docker container.
 
+Best of luck wi this sample
+John
